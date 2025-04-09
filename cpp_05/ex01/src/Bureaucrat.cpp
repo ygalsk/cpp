@@ -1,4 +1,6 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
+#include <iomanip>
 
 using std::cout;
 using std::endl;
@@ -48,6 +50,19 @@ void Bureaucrat::decrementGrade() {
         throw GradeTooLowException();
     _grade++;
     cout << GREEN << _name << RESET << " Bureaucrat grade decremented to " << _grade << endl;
+}
+
+void Bureaucrat::signForm(Form& form) {
+    try {
+        form.beSigned(*this);
+        cout << GREEN << _name << RESET << " signed " 
+             << GREEN << form.getName() << RESET << endl;
+    }
+    catch (const std::exception& e) {
+        cout << RED << _name << RESET << " couldn't sign " 
+             << RED << form.getName() << RESET << " because " 
+             << e.what() << endl;
+    }
 }
 
 const char *Bureaucrat::GradeTooHighException::what() const noexcept {

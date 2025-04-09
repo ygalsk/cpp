@@ -6,7 +6,7 @@
 /*   By: dkremer <dkremer@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 16:02:50 by dkremer           #+#    #+#             */
-/*   Updated: 2025/03/07 18:43:46 by dkremer          ###   ########.fr       */
+/*   Updated: 2025/03/07 19:23:17 by dkremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <iostream>
 #include <string>
 #include <exception>
-
 
 #define GREEN "\033[32m"
 #define RED "\033[31m"
@@ -26,7 +25,9 @@
 using std::string;
 using std::ostream;
 
-class Bureaucrat final
+class Form;
+
+class Bureaucrat
 {
     public:
     Bureaucrat(string const name, int grade);
@@ -38,15 +39,17 @@ class Bureaucrat final
     int getGrade() const;
     void incrementGrade();
     void decrementGrade();
+    void signForm(Form &form);
+    
     class GradeTooHighException : public std::exception
     {
         public:
-            const char *what() const throw() override;
+            const char *what() const noexcept override;
     };
     class GradeTooLowException : public std::exception
     {
         public:
-            const char *what() const throw() override;
+            const char *what() const noexcept override;
     };
     
     private:

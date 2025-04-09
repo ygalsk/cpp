@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkremer <dkremer@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/04 16:02:50 by dkremer           #+#    #+#             */
-/*   Updated: 2025/03/07 18:43:46 by dkremer          ###   ########.fr       */
+/*   Created: 2025/03/07 19:06:51 by dkremer           #+#    #+#             */
+/*   Updated: 2025/03/07 19:23:04 by dkremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <iostream>
 #include <string>
 #include <exception>
+#include "Bureaucrat.hpp"
 
 
 #define GREEN "\033[32m"
@@ -26,32 +27,34 @@
 using std::string;
 using std::ostream;
 
-class Bureaucrat final
-{
+class Bureaucrat;
+
+class Form {
     public:
-    Bureaucrat(string const name, int grade);
-    Bureaucrat(Bureaucrat const &other);
-    Bureaucrat &operator=(Bureaucrat const &other);
-    ~Bureaucrat();
-    
+    Form(string const name, int gradeToSign, int gradeToExecute);
+    Form(Form const &other);
+    Form &operator=(Form const &other);
+    ~Form();
+
     string getName() const;
-    int getGrade() const;
-    void incrementGrade();
-    void decrementGrade();
-    class GradeTooHighException : public std::exception
-    {
-        public:
-            const char *what() const throw() override;
-    };
-    class GradeTooLowException : public std::exception
-    {
-        public:
-            const char *what() const throw() override;
-    };
+    bool isSigned() const;
+    int getGradeToSign() const;
+    int getGradeToExec() const;
+    void beSigned(Bureaucrat const &bureaucrat);
     
+    class GradeTooHighException : public std::exception {
+        public:
+        const char *what() const noexcept override;
+    };
+    class GradeTooLowException : public std::exception {
+        public:
+        const char *what() const noexcept override;
+    };
     private:
         string const _name;
-        int _grade;
+        bool _signed;
+        int const _gradeToSign;
+        int const _gradeToExecute;   
 };
 
-ostream &operator<<(ostream &os, const Bureaucrat &bureaucrat);
+ostream &operator<<(ostream &os, const Form &form);
