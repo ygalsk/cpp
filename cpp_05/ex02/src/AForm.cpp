@@ -16,11 +16,12 @@
 using std::cout;
 using std::endl;
 
-AForm::AForm(string const name, int gradeToSign, int gradeToExecute)
+AForm::AForm(string const name, int gradeToSign, int gradeToExecute, string const target)
     : _name(name), 
     _signed(false), 
     _gradeToSign(gradeToSign), 
-    _gradeToExecute(gradeToExecute) {
+    _gradeToExecute(gradeToExecute),
+    _target(target) {
     if (gradeToSign < 1 || gradeToExecute < 1)
         throw AForm::GradeTooHighException();
     if (gradeToSign > 150 || gradeToExecute > 150)
