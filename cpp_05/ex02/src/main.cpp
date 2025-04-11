@@ -6,93 +6,59 @@
 /*   By: dkremer <dkremer@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 16:02:53 by dkremer           #+#    #+#             */
-/*   Updated: 2025/03/07 19:46:13 by dkremer          ###   ########.fr       */
+/*   Updated: 2025/04/11 14:27:00 by dkremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
-#include <iomanip>
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
-using std::cout;
-using std::endl;
-using std::setw;
-using std::left;
+void testExecuteForm()
+{
+    std::cout << "\n=== Testing ExecuteForm Function ===\n" << std::endl;
+    
+    Bureaucrat ceo("CEO", 1);
+    Bureaucrat manager("Manager", 50);
 
-int main() 
-{   
-    try {
-        
-        Bureaucrat bob("Bob", 5);
-        cout << bob << endl;
-        AForm form("Form-A", 1, 1);
-        cout << form << endl;
-        bob.signForm(form);
-        cout << form << endl;
-    }
-    catch (std::exception &e) 
+    ShrubberyCreationForm shrub("Garden");
+    RobotomyRequestForm robot("Bender");
+    PresidentialPardonForm pardon("Justin");
+
+    // Test execution without signing
+    std::cout << "\n--- Testing unsigned forms ---\n" << std::endl;
+    manager.executeForm(shrub);
+    manager.executeForm(robot);
+    manager.executeForm(pardon); 
+
+    // Sign all forms
+    std::cout << "\n--- Signing all forms ---\n" << std::endl;
+    manager.signForm(shrub);
+    manager.signForm(robot);
+    manager.signForm(pardon); // Should fail - bureaucrat grade too low
+    ceo.signForm(pardon);
+    
+
+    // Test execution with different grade levels
+    std::cout << "\n--- Testing with different grades ---\n" << std::endl;
+    manager.executeForm(robot);   // fail - bureaucrat grade too low
+    manager.executeForm(pardon);  // not signed
+    manager.executeForm(shrub);   // Should succeed
+    ceo.executeForm(pardon);      // Should succeed
+    ceo.executeForm(robot);      // Should succeed
+}
+
+int main()
+{
+    try
     {
-        cout << RED << "Error: " << e.what() <<RESET << endl;
+        testExecuteForm();
     }
-
-    
-    
-    // cout << "══════════════════════════════════════════" << endl;
-    // cout << endl;
-    // cout << RED << "          Bureaucrat Test Results       " << RESET << endl;
-    // cout << endl << "══════════════════════════════════════════" << endl;
-    // cout << YELLOW << "          Test 1: Grade too high        " << RESET << endl;
-    // cout << "──────────────────────────────────────────" << endl;
-    // try 
-    // {
-    //     Bureaucrat bob("Bob", 1);
-    //     bob.incrementGrade();
-    // }
-    // catch (std::exception &e) 
-    // {
-    //     cout << RED << "Error: " << e.what() <<RESET << endl;
-    // }
-
-    // cout << "══════════════════════════════════════════" << endl;
-    // cout << YELLOW << "          Test 2: Grade too low         " << RESET << endl;
-    // cout << "──────────────────────────────────────────" << endl;
-    // try 
-    // {
-    //     Bureaucrat larry("Larry", 150);
-    //     larry.decrementGrade();
-    // }
-    // catch (std::exception &e) 
-    // {
-    //     cout << RED << "Error: " << e.what() << RESET << endl;
-    // }
-
-    // cout << "══════════════════════════════════════════" << endl;
-    // cout << YELLOW << "          Test 3: increment Grade         " << RESET << endl;
-    // cout << "──────────────────────────────────────────" << endl;
-    // try 
-    // {
-    //     Bureaucrat larry("Jimmy", 150);
-    //     larry.incrementGrade();
-    // }
-    // catch (std::exception &e) 
-    // {
-    //     cout << RED << "Error: " << e.what() <<RESET << endl;
-    // }
-    
-    // cout << "══════════════════════════════════════════" << endl;
-    // cout << YELLOW << "          Test 4: decrement Grade         " << RESET << endl;
-    // cout << "──────────────────────────────────────────" << endl;
-    // try 
-    // {
-    //     Bureaucrat larry("Manny", 1);
-    //     larry.decrementGrade();
-    // }
-    // catch (std::exception &e) 
-    // {
-    //     cout << RED << "Error: " << e.what() <<RESET << endl;
-    // }
-    
-    // cout << "══════════════════════════════════════════" << endl;
-    
+    catch (std::exception &e)
+    {
+        std::cerr << "Exception: " << e.what() << std::endl;
+    }
     return 0;
 }

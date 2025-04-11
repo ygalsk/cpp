@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AForm.cpp                                           :+:      :+:    :+:   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkremer <dkremer@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 19:23:52 by dkremer           #+#    #+#             */
-/*   Updated: 2025/03/07 19:45:41 by dkremer          ###   ########.fr       */
+/*   Updated: 2025/04/11 14:41:37 by dkremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,14 @@ const char *AForm::GradeTooHighException::what() const noexcept {
 
 const char *AForm::GradeTooLowException::what() const noexcept {
     return "Grade too low";
+}
+
+const char *AForm::FormNotSignedException::what() const noexcept {
+	return "Form not sogned";
+}
+
+const char *AForm::GradeTooLowToExecuteException::what() const noexcept {
+	return "Grade too low to execute";
 }
 
 ostream& operator<<(ostream& os, const AForm& form) {

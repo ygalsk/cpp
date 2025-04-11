@@ -1,6 +1,6 @@
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm(std::string const target) : AForm("Robotomy Request", 145, 137, target) {
+RobotomyRequestForm::RobotomyRequestForm(std::string const target) : AForm("Robotomy Request", 72, 45, target) {
 
 }
 
@@ -12,6 +12,10 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &o
     if (this != &other)
         AForm::operator=(other);
     return *this;
+}
+
+RobotomyRequestForm::~RobotomyRequestForm() {
+
 }
 
 void RobotomyRequestForm::execute(Bureaucrat const &bureaucrat) const{

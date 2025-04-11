@@ -14,6 +14,10 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
     return *this;
 }
 
+ShrubberyCreationForm::~ShrubberyCreationForm() {
+
+}
+
 void ShrubberyCreationForm::execute(Bureaucrat const &bureaucrat) const {
     if (!this->isSigned())
         throw AForm::FormNotSignedException();

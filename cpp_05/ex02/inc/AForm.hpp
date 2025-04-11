@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AForm.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkremer <dkremer@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 19:06:51 by dkremer           #+#    #+#             */
-/*   Updated: 2025/03/07 19:23:04 by dkremer          ###   ########.fr       */
+/*   Updated: 2025/04/11 14:05:47 by dkremer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,13 @@ class AForm {
         public:
         const char *what() const noexcept override;
     };
-    protected:
-        string const _target;
     private:
         string const _name;
         bool _signed;
         int const _gradeToSign;
         int const _gradeToExecute;   
+    protected:
+        string const _target;
 };
 
 ostream &operator<<(ostream &os, const AForm &form);
