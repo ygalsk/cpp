@@ -40,3 +40,14 @@ void Converter::intConvert(std::string str) {
 	std::cout << "float: " << static_cast<float>(value) << "f" << std::endl;
 	std::cout << "double: " << static_cast<double>(value) << std::endl;
 }
+void Converter::charConvert(std::string str) {
+	if (str.length() != 1 || !isChar(str)) {
+		std::cerr << "Invalid char" << std::endl;
+		return;
+	}
+	char c = str[0];
+	std::cout << "char: '" << c << "'" << std::endl;
+	std::cout << "int: " << static_cast<int>(c) << std::endl;
+	std::cout << "float: " << static_cast<float>(c) << "f" << std::endl;
+	std::cout << "double: " << static_cast<double>(c) << std::endl;
+}
