@@ -20,3 +20,23 @@ void Converter::convert(std::string str) {
 			break;
 	}
 }
+
+void Converter::intConvert(std::string str) {
+	if (str == "-inf" || str == "+inf" || str == "nan") {
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: " << str << "f" << std::endl;
+		std::cout << "double: " << str << std::endl;
+		return;
+	}
+	int value = std::stoi(str);
+	char c = static_cast<char>(value);
+	if (isprint(c)) {
+		std::cout << "char: '" << c << "'" << std::endl;
+	} else {
+		std::cout << "char: Non displayable" << std::endl;
+	}
+	std::cout << "int: " << value << std::endl;
+	std::cout << "float: " << static_cast<float>(value) << "f" << std::endl;
+	std::cout << "double: " << static_cast<double>(value) << std::endl;
+}
