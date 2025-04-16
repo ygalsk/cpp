@@ -51,3 +51,23 @@ void Converter::charConvert(std::string str) {
 	std::cout << "float: " << static_cast<float>(c) << "f" << std::endl;
 	std::cout << "double: " << static_cast<double>(c) << std::endl;
 }
+
+void Converter::floatConvert(std::string str) {
+	if (str == "-inf" || str == "+inf" || str == "nan") {
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: " << str << std::endl;
+		std::cout << "double: " << str << std::endl;
+		return;
+	}
+	float value = std::stof(str);
+	char c = static_cast<char>(value);
+	if (isprint(c)) {
+		std::cout << "char: '" << c << "'" << std::endl;
+	} else {
+		std::cout << "char: Non displayable" << std::endl;
+	}
+	std::cout << "int: " << static_cast<int>(value) << std::endl;
+	std::cout << "float: " << value << "f" << std::endl;
+	std::cout << "double: " << static_cast<double>(value) << std::endl;
+}
