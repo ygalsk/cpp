@@ -6,11 +6,11 @@
 #    By: dkremer <dkremer@student.42heilbronn.de    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/04 16:02:58 by dkremer           #+#    #+#              #
-#    Updated: 2025/03/04 16:26:31 by dkremer          ###   ########.fr        #
+#    Updated: 2025/04/20 12:37:55 by dkremer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME     = bureaucrat
+NAME     = rpn
 
 # Compiler and flags
 CXX       = c++
